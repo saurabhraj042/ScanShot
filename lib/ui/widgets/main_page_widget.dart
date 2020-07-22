@@ -166,10 +166,11 @@ class _MainPageWidgetState extends State<MainPageWidget> {
       var config = DocumentScannerConfiguration(
         bottomBarBackgroundColor: Colors.blue,
         ignoreBadAspectRatio: true,
+        acceptedAngleScore: 20,
         multiPageEnabled: true,
         //maxNumberOfPages: 3,
         //flashEnabled: true,
-        //autoSnappingSensitivity: 0.7,
+        autoSnappingSensitivity: 0.7,
         cameraPreviewMode: CameraPreviewMode.FIT_IN,
         orientationLockMode: CameraOrientationMode.PORTRAIT,
         //documentImageSizeLimit: Size(2000, 3000),
@@ -236,35 +237,6 @@ class _MainPageWidgetState extends State<MainPageWidget> {
               "\nValue: " +
               result.text,
           title: "Barcode Result:");
-    }
-  }
-
-  startEhicScanner() async {
-    if (!await checkLicenseStatus(context)) {
-      return;
-    }
-
-    HealthInsuranceCardRecognitionResult result;
-    try {
-      var config = HealthInsuranceScannerConfiguration(
-        topBarBackgroundColor: Colors.blue,
-        topBarButtonsColor: Colors.white70,
-        // ...
-      );
-      result = await ScanbotSdkUi.startEhicScanner(config);
-    } catch (e) {
-      print(e);
-    }
-
-    if (isOperationSuccessful(result) && result?.fields != null) {
-      var concatenate = StringBuffer();
-      result.fields
-          .map((field) =>
-              "${field.type.toString().replaceAll("HealthInsuranceCardFieldType.", "")}:${field.value}\n")
-          .forEach((s) {
-        concatenate.write(s);
-      });
-      showAlertDialog(context, concatenate.toString());
     }
   }
 
