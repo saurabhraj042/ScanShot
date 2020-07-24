@@ -1,13 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:scan_shot/ui/views/login/splash_screen.dart';
-import 'package:scanbot_sdk/common_data.dart';
-import 'package:scanbot_sdk/scanbot_sdk.dart';
-import 'package:scanbot_sdk/scanbot_sdk_models.dart';
-
+import 'package:scan_shot/ui/views/landing.dart';
 import 'core/viewmodels/auth_service.dart';
 
 void main() {
@@ -29,7 +22,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         title: 'ScanShot',
         debugShowCheckedModeBanner: false,
-        home: SplashScreen(),
+        home: Landing(),
       ),
     );
   }

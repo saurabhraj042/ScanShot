@@ -6,7 +6,7 @@ import 'package:scanbot_sdk/cropping_screen_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 
-import '../../pages_repository.dart';
+import '../../core/models/pages_repository.dart';
 import 'filter_page_widget.dart';
 import 'pages_widget.dart';
 

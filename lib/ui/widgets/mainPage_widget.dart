@@ -2,10 +2,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 import 'package:scan_shot/core/viewmodels/auth_service.dart';
 import 'package:scan_shot/ui/scan_ui/preview_document_widget.dart';
 import 'package:scan_shot/ui/scan_ui/progress_dialog.dart';
 import 'package:scan_shot/ui/scan_ui/utils.dart';
+import 'package:scan_shot/ui/views/landing.dart';
 import 'package:scan_shot/ui/views/login/login.dart';
 import 'package:scan_shot/ui/widgets/card_item.dart';
 import 'package:scanbot_sdk/barcode_scanning_data.dart';
@@ -15,7 +17,7 @@ import 'package:scanbot_sdk/mrz_scanning_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 
-import '../../pages_repository.dart';
+import '../../core/models/pages_repository.dart';
 
 class MainPageUI extends StatefulWidget {
   @override
@@ -24,10 +26,11 @@ class MainPageUI extends StatefulWidget {
 
 class _MainPageWidgetState extends State<MainPageUI> {
   PageRepository _pageRepository = PageRepository();
-  AuthService _auth = AuthService();
+  
 
   @override
   Widget build(BuildContext context) {
+    AuthService auth = Provider.of<AuthService>(context);
     return Scaffold(
       appBar: AppBar(
         actions: <Widget>[
@@ -38,19 +41,17 @@ class _MainPageWidgetState extends State<MainPageUI> {
               color: Colors.black,
             ),
             onPressed: () {
-              _auth.signOutGoogle();
+              auth.signOutGoogle();
               print('Signed out');
-              setState(
-                () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Login();
-                      },
-                    ),
-                  );
-                },
-              );
+              // Navigator.pop(context);
+              /*  
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return Landing();
+                  },
+                ),
+              );*/
             },
           )
         ],

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:scan_shot/ui/views/login/login.dart';
 
 class AuthService extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -50,9 +51,10 @@ class AuthService extends ChangeNotifier {
     return 'signInWithGoogle succeeded: $user';
   }
 
-  void signOutGoogle() async {
+  Future<Login> signOutGoogle() async {
     await googleSignIn.signOut();
-
-    print("User Sign Out");
+    await FirebaseAuth.instance.signOut();
+    return Login();
+    
   }
 }

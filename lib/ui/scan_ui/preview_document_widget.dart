@@ -10,7 +10,7 @@ import 'package:scanbot_sdk/render_pdf_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 
-import '../../pages_repository.dart';
+import '../../core/models/pages_repository.dart';
 import 'filter_all_pages_widget.dart';
 import 'operations_page_widget.dart';
 import 'pages_widget.dart';

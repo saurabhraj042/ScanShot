@@ -4,7 +4,7 @@ import 'package:scan_shot/ui/scan_ui/utils.dart';
 import 'package:scanbot_sdk/common_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 
-import '../../pages_repository.dart';
+import '../../core/models/pages_repository.dart';
 
 // ignore: must_be_immutable
 class MultiPageFiltering extends StatelessWidget {
