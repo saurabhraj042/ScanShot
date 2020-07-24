@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:scanbot_sdk/common_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 
-Future<void> showAlertDialog(BuildContext context, String textToShow, {String title}) async {
+Future<void> showAlertDialog(BuildContext context, String textToShow,
+    {String title}) async {
   Widget text = SimpleDialogOption(
     child: Padding(
       padding: const EdgeInsets.all(16.0),
@@ -16,14 +16,6 @@ Future<void> showAlertDialog(BuildContext context, String textToShow, {String ti
     title: title != null ? Text(title) : null,
     content: text,
     contentPadding: EdgeInsets.all(0),
-    actions: <Widget>[
-      FlatButton(
-        child: Text('OK'),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
-      ),
-    ],
   );
 
   // show the dialog
@@ -40,7 +32,9 @@ Future<bool> checkLicenseStatus(BuildContext context) async {
   if (result.isLicenseValid) {
     return true;
   }
-  await showAlertDialog(context, 'Scanbot SDK (trial) period or license has expired.', title: 'Info');
+  await showAlertDialog(
+      context, 'Scanbot SDK (trial) period or license has expired.',
+      title: 'Info');
   return false;
 }
 
