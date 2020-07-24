@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scan_shot/ui/widgets/main_page_widget.dart';
+import 'package:scan_shot/ui/widgets/mainPage_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MainPageWidget(),
+      home: MainPageUI(),
     );
   }
 }

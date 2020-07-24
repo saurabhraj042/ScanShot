@@ -3,27 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:scan_shot/core/viewmodels/auth_service.dart';
-import 'package:scan_shot/ui/scan_ui/menu_items.dart';
 import 'package:scan_shot/ui/scan_ui/preview_document_widget.dart';
 import 'package:scan_shot/ui/scan_ui/progress_dialog.dart';
 import 'package:scan_shot/ui/scan_ui/utils.dart';
 import 'package:scan_shot/ui/views/login/login.dart';
+import 'package:scan_shot/ui/widgets/card_item.dart';
 import 'package:scanbot_sdk/barcode_scanning_data.dart';
 import 'package:scanbot_sdk/common_data.dart';
 import 'package:scanbot_sdk/document_scan_data.dart';
-import 'package:scanbot_sdk/ehic_scanning_data.dart';
 import 'package:scanbot_sdk/mrz_scanning_data.dart';
 import 'package:scanbot_sdk/scanbot_sdk.dart';
 import 'package:scanbot_sdk/scanbot_sdk_ui.dart';
 
 import '../../pages_repository.dart';
 
-class MainPageWidget extends StatefulWidget {
+class MainPageUI extends StatefulWidget {
   @override
   _MainPageWidgetState createState() => _MainPageWidgetState();
 }
 
-class _MainPageWidgetState extends State<MainPageWidget> {
+class _MainPageWidgetState extends State<MainPageUI> {
   PageRepository _pageRepository = PageRepository();
   AuthService _auth = AuthService();
 
@@ -60,46 +59,57 @@ class _MainPageWidgetState extends State<MainPageWidget> {
         title: const Text('ScanShot',
             style: TextStyle(inherit: true, color: Colors.black)),
       ),
-      body: ListView(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          TitleItemWidget("Document Scanner"),
-          MenuItemWidget(
-            "Scan Document",
-            onTap: () {
-              startDocumentScanning();
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Cards("Start Scaning", onTap: () {
+                startDocumentScanning();
+              }),
+              Cards("Import Image", onTap: () {
+                importImage();
+              }),
+            ],
           ),
-          MenuItemWidget(
-            "Import Image",
-            onTap: () {
-              importImage();
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Cards(
+                "View Image Results",
+                endIcon: Icons.keyboard_arrow_right,
+                onTap: () {
+                  gotoImagesView();
+                },
+              ),
+              Cards(
+                "Scan Barcode (all formats: 1D + 2D)",
+                onTap: () {
+                  startBarcodeScanner();
+                },
+              ),
+            ],
           ),
-          MenuItemWidget(
-            "View Image Results",
-            endIcon: Icons.keyboard_arrow_right,
-            onTap: () {
-              gotoImagesView();
-            },
-          ),
-          TitleItemWidget("Data Detectors"),
-          MenuItemWidget(
-            "Scan Barcode (all formats: 1D + 2D)",
-            onTap: () {
-              startBarcodeScanner();
-            },
-          ),
-          MenuItemWidget(
-            "Scan QR code (QR format only)",
-            onTap: () {
-              startQRScanner();
-            },
-          ),
-          MenuItemWidget(
-            "Scan MRZ (Machine Readable Zone)",
-            onTap: () {
-              startMRZScanner();
-            },
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Cards(
+                "Scan QR code (QR format only)",
+                onTap: () {
+                  startQRScanner();
+                },
+              ),
+              Cards(
+                "Scan MRZ (Machine Readable Zone)",
+                onTap: () {
+                  startMRZScanner();
+                },
+              ),
+            ],
           ),
         ],
       ),
@@ -166,19 +176,14 @@ class _MainPageWidgetState extends State<MainPageWidget> {
       var config = DocumentScannerConfiguration(
         bottomBarBackgroundColor: Colors.blue,
         ignoreBadAspectRatio: true,
-        acceptedAngleScore: 20,
+        acceptedAngleScore: 10,
         multiPageEnabled: true,
-        //maxNumberOfPages: 3,
-        //flashEnabled: true,
-        autoSnappingSensitivity: 0.7,
+        autoSnappingSensitivity: 0.8,
         cameraPreviewMode: CameraPreviewMode.FIT_IN,
         orientationLockMode: CameraOrientationMode.PORTRAIT,
-        //documentImageSizeLimit: Size(2000, 3000),
         cancelButtonTitle: "Cancel",
         pageCounterButtonTitle: "%d Page(s)",
         textHintOK: "Perfect, don't move...",
-        //textHintNothingDetected: "Nothing",
-        // ...
       );
       result = await ScanbotSdkUi.startDocumentScanner(config);
     } catch (e) {
