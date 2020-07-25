@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 const TextStyle AppBarTextStyle = TextStyle(
-  fontSize: 25,
+  fontSize: 30,
   fontWeight: FontWeight.bold,
-  color: Colors.black,
+  color: Colors.black87,
 );

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -8,6 +9,7 @@ import 'package:scan_shot/ui/scan_ui/preview_document_widget.dart';
 import 'package:scan_shot/ui/scan_ui/progress_dialog.dart';
 import 'package:scan_shot/core/services/utils.dart';
 import 'package:scan_shot/ui/shared/appBar_textStyle.dart';
+import 'package:scan_shot/ui/views/info.dart';
 import 'package:scan_shot/ui/widgets/card_item.dart';
 import 'package:scanbot_sdk/barcode_scanning_data.dart';
 import 'package:scanbot_sdk/common_data.dart';
@@ -26,11 +28,33 @@ class MainPageUI extends StatefulWidget {
 class _MainPageWidgetState extends State<MainPageUI> {
   PageRepository _pageRepository = PageRepository();
 
+  String filePath;
+
+  void openFile() async {
+    filePath = await FilePicker.getFilePath(type: FileType.any);
+  }
+
   @override
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      backgroundColor: const Color(0xffa3f7bf),
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            FontAwesomeIcons.infoCircle,
+            size: 20.0,
+            color: Colors.white,
+          ),
+          onPressed: () => {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => InfoPage()),
+            )
+          },
+        ),
+        elevation: 0,
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -44,7 +68,7 @@ class _MainPageWidgetState extends State<MainPageUI> {
             },
           )
         ],
-        backgroundColor: Colors.white,
+        backgroundColor: const Color(0xffa3f7bf),
         centerTitle: true,
         title: const Text(
           'ScanShot',
@@ -58,10 +82,10 @@ class _MainPageWidgetState extends State<MainPageUI> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Cards("Start Scaning", onTap: () {
+              Cards("SCAN", Color(0xfff6def6), onTap: () {
                 startDocumentScanning();
               }),
-              Cards("Import Image", onTap: () {
+              Cards("IMPORT", Color(0xfffff591), onTap: () {
                 importImage();
               }),
             ],
@@ -71,14 +95,16 @@ class _MainPageWidgetState extends State<MainPageUI> {
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Cards(
-                "View Image Results",
+                "IMAGE RESULTS",
+                Color(0xfff1f9f9),
                 endIcon: Icons.keyboard_arrow_right,
                 onTap: () {
                   gotoImagesView();
                 },
               ),
               Cards(
-                "Scan Barcode (all formats: 1D + 2D)",
+                "BARCODE SCAN",
+                Color(0xffa8ff3e),
                 onTap: () {
                   startBarcodeScanner();
                 },
@@ -90,19 +116,43 @@ class _MainPageWidgetState extends State<MainPageUI> {
             //crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Cards(
-                "Scan QR code (QR format only)",
+                "QR-CODE SCAN",
+                Color(0xffecb390),
                 onTap: () {
                   startQRScanner();
                 },
               ),
-              Cards(
-                "Scan MRZ (Machine Readable Zone)",
-                onTap: () {
-                  startMRZScanner();
-                },
-              ),
             ],
           ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              SizedBox(
+                width: width * 0.50,
+                child: Card(
+                  color: const Color(0xff05dfd7),
+                  child: FlatButton(
+                    onPressed: openFile,
+                    child: Text(
+                      'OPEN FILE',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "PDFs are saved to folder ScanShotFiles/sbsdk-plugin inside internal storage",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );
