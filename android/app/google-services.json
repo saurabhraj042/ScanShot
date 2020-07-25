@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "949525461224",
+    "firebase_url": "https://scanshot-d5185.firebaseio.com",
+    "project_id": "scanshot-d5185",
+    "storage_bucket": "scanshot-d5185.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949525461224:android:9a2bb32f12b5ee4716315d",
+        "android_client_info": {
+          "package_name": "com.example.scan_shot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949525461224-e9mjh39n475pq444nvhvm646q4u38g6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.scan_shot",
+            "certificate_hash": "947e86221d13069546303138f1bc00e486432d96"
+          }
+        },
+        {
+          "client_id": "949525461224-dbdnfqtk1ev44rbum29j85f8kr16j2a4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq8Hv-FMSl1gtBsN_ipHVLA1ywsGlhEkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949525461224-dbdnfqtk1ev44rbum29j85f8kr16j2a4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
