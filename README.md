@@ -1,5 +1,5 @@
 # ScanShot
-Document Scanner App built with Flutter SDK using Scanbot package for all the scanning features.MVVP approach is follwed with Provider for state management in Flutter.Firebase Google Sign method is used for authentication <br/>
+Document Scanner App built with Flutter SDK using Scanbot package for all the scanning features.MVVM approach is follwed with Provider for state management in Flutter.Firebase Google Sign method is used for authentication <br/>
 Features:<br/>
 * Scan Images and make PDF
 * BR-code & QR-code Scanner
