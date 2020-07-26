@@ -7,7 +7,7 @@ Features:<br/>
 * Image filters available 
 * Open file manager within the App
 <br/>
-PLugins used :<br/>
+Flutter Plugins used:<br/>
 * File Picker
 * Permission Handler
 * URL Launcher
