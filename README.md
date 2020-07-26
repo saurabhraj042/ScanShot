@@ -6,7 +6,6 @@ Features:<br/>
 * Auto detection and Auto Cropping provided within Scanbot package
 * Image filters available 
 * Open file manager within the App
-<br/>
 Plugins:<br/>
 * File Picker
 * Permission Handler
