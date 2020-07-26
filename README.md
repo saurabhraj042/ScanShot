@@ -5,7 +5,7 @@ Features:<br/>
 * BR-code & QR-code Scanner
 * Auto detection and Auto Cropping provided within Scanbot package
 * Image filters available 
-* Open file manager within the App
+* Open file manager within the App<br/>
 Plugins:<br/>
 * File Picker
 * Permission Handler
