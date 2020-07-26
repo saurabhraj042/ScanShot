@@ -9,3 +9,4 @@
 ![Image of Yaktocat](https://github.com/saurabhraj042/ScanShot/blob/master/screenshots/photo_2020-07-26_10-39-54.jpg | width=100)
 ![Image of Yaktocat](https://github.com/saurabhraj042/ScanShot/blob/master/screenshots/photo_2020-07-26_10-40-03.jpg | width=100)
 ![Image of Yaktocat](https://github.com/saurabhraj042/ScanShot/blob/master/screenshots/photo_2020-07-26_10-39-56.jpg | width=100)
+![](https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png | width=100)
